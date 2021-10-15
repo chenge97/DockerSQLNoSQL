@@ -1,4 +1,4 @@
-FROM centos8
+FROM centos:latest
 MAINTAINER Miguel Chenge "chenge97@gmail.com"
 
 USER root
