@@ -25,6 +25,8 @@ def post():
     for json_data in json_list:
         db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data)
 
+    return "Success"
+
 @UserBlueprint.route('/GetPostUsers',methods = ['GET','POST'])
 def index():
     if request.method == 'GET':
