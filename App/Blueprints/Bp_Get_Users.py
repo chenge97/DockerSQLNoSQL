@@ -21,6 +21,7 @@ def get():
     return make_response(json.dumps(json_list))
 def post():
     json_list = request.get_json(force=True)
+    print(json_list)
 
     for json_data in json_list:
         db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data)
