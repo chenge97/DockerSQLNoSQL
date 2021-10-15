@@ -13,6 +13,10 @@ RUN pip install -r requirements.txt
 
 COPY . /app
 
+EXPOSE 5000
+
+EXPOSE 5432
+
 ENTRYPOINT [ "python3.7" ]
 
 CMD [ "runapp.py" ]
