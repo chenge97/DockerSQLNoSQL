@@ -21,6 +21,8 @@ def get():
     return make_response(json.dumps(json_list))
 def post():
     json_list = request.get_json(force=True)
+    if isinstance(json_list,str):
+        json_list = json.loads(json_list)
     print(json_list)
 
     for json_data in json_list:
