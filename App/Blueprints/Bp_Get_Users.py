@@ -1,6 +1,6 @@
 from App import app,db
 import json
-from flask import make_response,request,Blueprint
+from flask import make_response,request,Blueprint,request
 
 UserBlueprint = Blueprint('UserBlueprint', __name__)
 
@@ -19,11 +19,18 @@ def get():
         json_list.append(json_dict)
     
     return make_response(json.dumps(json_list))
+def post():
+    json_list = request.get_json(force=True)
+
+    for json_data in json_list:
+        db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data)
 
 @UserBlueprint.route('/GetPostUsers',methods = ['GET','POST'])
 def index():
     if request.method == 'GET':
         return get()
+    elif request.method == 'POST':
+        return post()
     
 
 
