@@ -1,6 +1,7 @@
 from App import app,db
 import json
 from flask import make_response,request,Blueprint,request
+from flask_sqlalchemy import text
 
 UserBlueprint = Blueprint('UserBlueprint', __name__)
 
@@ -23,7 +24,7 @@ def post():
     json_list = request.get_json(force=True)
 
     for json_data in json_list:
-        db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data)
+        db.session.execute(text("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data))
 
     return "Success"
 
