@@ -24,7 +24,7 @@ def post():
     print(json_list)
 
     for json_data in json_list:
-        db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",json_data)
+        db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",{"name":json_data["name"],"lastname":json_data["lastname"],"age":json_data["age"]})
 
     return "Success"
 
