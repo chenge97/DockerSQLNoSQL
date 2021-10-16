@@ -20,7 +20,7 @@ def get():
     
     return make_response(json.dumps(json_list))
 def post():
-    db.session.execute("CREATE TABLE IF NOT EXIST Users (id SERIAL PRIMARY KEY, name VARCHAR(100),lastname VARCHAR(100),age VARCHAR(50))")
+    db.session.execute("CREATE TABLE IF NOT EXISTS Users (id SERIAL PRIMARY KEY, name VARCHAR(100),lastname VARCHAR(100),age VARCHAR(50))")
     json_list = request.get_json(force=True)
     if isinstance(json_list,str):
         json_list = json.loads(json_list)
