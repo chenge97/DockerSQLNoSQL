@@ -20,13 +20,12 @@ def get():
     
     return make_response(json.dumps(json_list))
 def post():
+    db.session.execute("CREATE TABLE IF NOT EXIST Users (id SERIAL PRIMARY KEY, name VARCHAR(100),lastname VARCHAR(100),age VARCHAR(50))")
     json_list = request.get_json(force=True)
     if isinstance(json_list,str):
         json_list = json.loads(json_list)
-    print(json_list)
 
     for json_data in json_list:
-        print(json_data)
         db.session.execute("INSERT INTO Users (name,lastname,age) VALUES (:name,:lastname,:age)",{"name":json_data["name"],"lastname":json_data["lastname"],"age":json_data["age"]})
 
     return "Success"
